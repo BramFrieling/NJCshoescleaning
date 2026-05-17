@@ -7,6 +7,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
+// Prevent iOS resize recalcs when address bar hides/shows
+ScrollTrigger.config({ ignoreMobileResize: true })
+
 const isLowEnd =
   typeof navigator !== 'undefined' && (navigator.hardwareConcurrency ?? 8) <= 4
 
@@ -138,6 +141,9 @@ export default function KitCanvas({ sectionRef }) {
     const renderer = new THREE.WebGLRenderer({ antialias: !isLowEnd, alpha: true })
     renderer.setSize(W, H)
     renderer.setPixelRatio(isLowEnd ? 1 : Math.min(window.devicePixelRatio, 2))
+    // Allow touch scroll to pass through the canvas on iOS Safari
+    renderer.domElement.style.touchAction = 'pan-y'
+    renderer.domElement.style.pointerEvents = 'none'
     el.appendChild(renderer.domElement)
 
     const scene = new THREE.Scene()

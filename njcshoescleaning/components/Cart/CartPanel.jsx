@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import { useCart } from '@/contexts/CartContext'
+import { lockScroll, unlockScroll } from '@/lib/scrollLock'
 import CartItem from './CartItem'
 import styles from './Cart.module.css'
 
@@ -12,9 +13,14 @@ export default function CartPanel({ open, onClose }) {
   const panelRef = useRef(null)
 
   useEffect(() => {
+    if (!open) return
     const onKey = (e) => e.key === 'Escape' && onClose()
-    if (open) window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    window.addEventListener('keydown', onKey)
+    lockScroll()
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      unlockScroll()
+    }
   }, [open, onClose])
 
   const progress = Math.min((subtotal / FREE_SHIPPING_THRESHOLD) * 100, 100)

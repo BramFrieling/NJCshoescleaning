@@ -14,6 +14,12 @@ const outfit = Outfit({
   weight: ['300', '400', '500', '600'],
 })
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+}
+
 export const metadata = {
   title: 'NJC Shoes Cleaning — Premium Schoenenverzorging',
   description:

@@ -88,6 +88,8 @@
   flex: 1;
   overflow-y: auto;
   padding: 8px 28px;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
 .empty {

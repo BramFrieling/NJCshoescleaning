@@ -15,6 +15,7 @@
   position: sticky;
   top: 0;
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   background: radial-gradient(ellipse 85% 60% at 50% 38%, #111c30, #070a14 85%);
 }
@@ -130,6 +131,8 @@
   left: 0;
   right: 0;
   padding: 0 2rem 3.5rem;
+  /* Account for iPhone home indicator / safe area */
+  padding-bottom: max(3.5rem, calc(env(safe-area-inset-bottom) + 1.5rem));
   background: linear-gradient(to top, rgba(7,9,20,0.96) 0%, rgba(7,9,20,0.7) 60%, transparent 100%);
   z-index: 10;
   pointer-events: none;

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import dynamic from 'next/dynamic'
 import { useCart } from '@/contexts/CartContext'
+import { lockScroll, unlockScroll } from '@/lib/scrollLock'
 import styles from './Navbar.module.css'
 
 const LogoImage = dynamic(() => import('@/components/Logo/LogoImage'), { ssr: false })
@@ -30,8 +31,9 @@ export default function Navbar({ onCartOpen }) {
   }, [totalItems])
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
+    if (!menuOpen) return
+    lockScroll()
+    return () => { unlockScroll() }
   }, [menuOpen])
 
   const navLinks = [
