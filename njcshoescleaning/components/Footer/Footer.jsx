@@ -1,3 +1,5 @@
+import styles from './Footer.module.css'
+
 const SOCIALS = [
   {
     name: 'Instagram',
@@ -85,139 +87,50 @@ const PAYMENT_ICONS = [
 
 export default function Footer() {
   return (
-    <footer
-      style={{
-        background: '#050810',
-        borderTop: '1px solid rgba(255,255,255,0.06)',
-        padding: '60px 40px 32px',
-      }}
-    >
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: 40,
-          maxWidth: 960,
-          margin: '0 auto 48px',
-        }}
-      >
+    <footer className={styles.footer}>
+      <div className={styles.grid}>
         <div>
-          <p
-            style={{
-              fontFamily: 'var(--font-heading), sans-serif',
-              fontWeight: 900,
-              fontSize: '1.5rem',
-              letterSpacing: '0.1em',
-              marginBottom: 12,
-            }}
-          >
-            NJC
-          </p>
-          <p style={{ fontSize: '0.8rem', opacity: 0.4, lineHeight: 1.7 }}>
+          <p className={styles.brand}>NJC</p>
+          <p className={styles.brandSub}>
             Premium schoenenverzorging.<br />Dutch quality.
           </p>
         </div>
 
         <div>
-          <h4
-            style={{
-              fontSize: '0.7rem',
-              letterSpacing: '0.15em',
-              textTransform: 'uppercase',
-              opacity: 0.4,
-              marginBottom: 16,
-              fontWeight: 500,
-              fontFamily: 'var(--font-body), sans-serif',
-            }}
-          >
-            Shop
-          </h4>
-          <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <h4 className={styles.colTitle}>Shop</h4>
+          <ul className={styles.links}>
             {['Starter Kit', 'Pro Kit', 'Alle producten'].map((l) => (
-              <li key={l}>
-                <a href="#shop" style={{ fontSize: '0.85rem', opacity: 0.6, textDecoration: 'none', color: 'var(--white)', transition: 'opacity 0.2s' }}>
-                  {l}
-                </a>
-              </li>
+              <li key={l}><a href="#shop">{l}</a></li>
             ))}
           </ul>
         </div>
 
         <div>
-          <h4
-            style={{
-              fontSize: '0.7rem',
-              letterSpacing: '0.15em',
-              textTransform: 'uppercase',
-              opacity: 0.4,
-              marginBottom: 16,
-              fontWeight: 500,
-              fontFamily: 'var(--font-body), sans-serif',
-            }}
-          >
-            Info
-          </h4>
-          <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <h4 className={styles.colTitle}>Info</h4>
+          <ul className={styles.links}>
             {['Verzending & retour', 'Privacybeleid', 'Algemene voorwaarden', 'Contact'].map((l) => (
-              <li key={l}>
-                <a href="#" style={{ fontSize: '0.85rem', opacity: 0.6, textDecoration: 'none', color: 'var(--white)' }}>
-                  {l}
-                </a>
-              </li>
+              <li key={l}><a href="#">{l}</a></li>
             ))}
           </ul>
         </div>
 
         <div>
-          <h4
-            style={{
-              fontSize: '0.7rem',
-              letterSpacing: '0.15em',
-              textTransform: 'uppercase',
-              opacity: 0.4,
-              marginBottom: 16,
-              fontWeight: 500,
-              fontFamily: 'var(--font-body), sans-serif',
-            }}
-          >
-            Volg ons
-          </h4>
-          <div style={{ display: 'flex', gap: 16 }}>
+          <h4 className={styles.colTitle}>Volg ons</h4>
+          <div className={styles.socials}>
             {SOCIALS.map((s) => (
-              <a
-                key={s.name}
-                href={s.href}
-                aria-label={s.name}
-                style={{ color: 'var(--white)', opacity: 0.5, transition: 'opacity 0.2s' }}
-              >
-                {s.icon}
-              </a>
+              <a key={s.name} href={s.href} aria-label={s.name}>{s.icon}</a>
             ))}
           </div>
         </div>
       </div>
 
-      <div
-        style={{
-          borderTop: '1px solid rgba(255,255,255,0.06)',
-          paddingTop: 24,
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          gap: 16,
-          maxWidth: 960,
-          margin: '0 auto',
-        }}
-      >
-        <p style={{ fontSize: '0.75rem', opacity: 0.3 }}>
+      <div className={styles.bottom}>
+        <p className={styles.copy}>
           © {new Date().getFullYear()} NJC Shoes Cleaning. Alle rechten voorbehouden.
         </p>
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
+        <div className={styles.payments}>
           {PAYMENT_ICONS.map((p) => (
-            <span key={p.name} aria-label={p.name} style={{ display: 'flex', opacity: 0.75 }}>
-              {p.icon}
-            </span>
+            <span key={p.name} aria-label={p.name}>{p.icon}</span>
           ))}
         </div>
       </div>

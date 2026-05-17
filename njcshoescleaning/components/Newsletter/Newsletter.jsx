@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import styles from './Newsletter.module.css'
 
 export default function Newsletter() {
   const [email, setEmail] = useState('')
@@ -13,60 +14,25 @@ export default function Newsletter() {
   }
 
   return (
-    <section
-      style={{
-        padding: '80px 40px',
-        background: 'var(--navy)',
-        textAlign: 'center',
-      }}
-    >
-      <h2 style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', color: 'var(--white)', marginBottom: 12 }}>
-        Blijf op de hoogte
-      </h2>
-      <p style={{ opacity: 0.6, marginBottom: 32, fontSize: '0.9rem' }}>
+    <section className={styles.section}>
+      <h2 className={styles.title}>Blijf op de hoogte</h2>
+      <p className={styles.sub}>
         Meld je aan voor exclusieve aanbiedingen en sneakertips.
       </p>
 
       {sent ? (
-        <p style={{ color: 'var(--accent)', fontWeight: 600 }}>
-          ✓ Bedankt! Je staat op de lijst.
-        </p>
+        <p className={styles.success}>✓ Bedankt! Je staat op de lijst.</p>
       ) : (
-        <form
-          onSubmit={handleSubmit}
-          style={{ display: 'flex', gap: 0, maxWidth: 420, margin: '0 auto' }}
-        >
+        <form onSubmit={handleSubmit} className={styles.form}>
           <input
             type="email"
             placeholder="Jouw e-mailadres"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            style={{
-              flex: 1,
-              padding: '14px 18px',
-              background: 'rgba(255,255,255,0.1)',
-              border: '1px solid rgba(255,255,255,0.2)',
-              color: 'var(--white)',
-              fontSize: '0.875rem',
-              outline: 'none',
-            }}
+            className={styles.input}
           />
-          <button
-            type="submit"
-            style={{
-              background: 'var(--white)',
-              color: 'var(--navy)',
-              border: 'none',
-              padding: '14px 24px',
-              fontFamily: 'var(--font-heading), sans-serif',
-              fontWeight: 900,
-              fontSize: '0.85rem',
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em',
-              cursor: 'pointer',
-            }}
-          >
+          <button type="submit" className={styles.btn}>
             Aanmelden
           </button>
         </form>
