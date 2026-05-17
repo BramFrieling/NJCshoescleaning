@@ -15,9 +15,9 @@ export default function ThreeScene() {
     const W = mountRef.current.clientWidth
     const H = mountRef.current.clientHeight
 
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: !isLowEnd })
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true })
     renderer.setSize(W, H)
-    renderer.setPixelRatio(isLowEnd ? 1 : Math.min(window.devicePixelRatio, 2))
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     mountRef.current.appendChild(renderer.domElement)
 
     const scene = new THREE.Scene()

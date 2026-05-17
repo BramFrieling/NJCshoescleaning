@@ -14,6 +14,8 @@
 
   --cart-width: 420px;
   --navbar-h: 72px;
+  /* Total navbar height including iPhone notch/Dynamic Island safe area */
+  --navbar-safe: calc(var(--navbar-h) + env(safe-area-inset-top));
 }
 
 @theme inline {

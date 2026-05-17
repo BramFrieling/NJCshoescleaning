@@ -23,7 +23,7 @@
 /* Header: sits below navbar */
 .header {
   position: absolute;
-  top: calc(var(--navbar-h) + 20px);
+  top: calc(var(--navbar-safe) + 20px);
   left: 50%;
   transform: translateX(-50%);
   text-align: center;

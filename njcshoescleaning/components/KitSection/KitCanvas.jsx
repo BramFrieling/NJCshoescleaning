@@ -138,9 +138,9 @@ export default function KitCanvas({ sectionRef }) {
     const H = el.clientHeight
     const isMob = W < 768
 
-    const renderer = new THREE.WebGLRenderer({ antialias: !isLowEnd, alpha: true })
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
     renderer.setSize(W, H)
-    renderer.setPixelRatio(isLowEnd ? 1 : Math.min(window.devicePixelRatio, 2))
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     // Allow touch scroll to pass through the canvas on iOS Safari
     renderer.domElement.style.touchAction = 'pan-y'
     renderer.domElement.style.pointerEvents = 'none'
