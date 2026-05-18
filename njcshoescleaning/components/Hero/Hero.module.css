@@ -42,7 +42,7 @@
   z-index: 1;
   padding: 0 48px;
   max-width: 680px;
-  padding-top: var(--navbar-safe);
+  padding-top: calc(var(--navbar-h) + env(safe-area-inset-top, 0px));
 }
 
 .eyebrow {
@@ -209,7 +209,7 @@
 @media (max-width: 768px) {
   .content {
     padding: 0 20px;
-    padding-top: var(--navbar-safe);
+    padding-top: calc(var(--navbar-h) + env(safe-area-inset-top, 0px));
   }
 
   /* Hide stats on mobile — too cluttered */

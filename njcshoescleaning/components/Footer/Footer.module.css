@@ -1,7 +1,7 @@
 .footer {
   background: #050810;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 60px 40px 32px;
+  padding: 60px 40px calc(32px + env(safe-area-inset-bottom, 0px));
 }
 
 .grid {
@@ -115,7 +115,7 @@
 
 @media (max-width: 768px) {
   .footer {
-    padding: 48px 16px 24px;
+    padding: 48px 16px calc(24px + env(safe-area-inset-bottom, 0px));
   }
 
   .grid {

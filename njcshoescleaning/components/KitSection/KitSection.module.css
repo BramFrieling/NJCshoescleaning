@@ -208,7 +208,7 @@
 
 @media (max-width: 768px) {
   .header {
-    top: calc(var(--navbar-safe, calc(var(--navbar-h, 72px) + env(safe-area-inset-top, 0px))) + 20px);
+    top: calc(var(--navbar-h, 72px) + env(safe-area-inset-top, 0px) + 20px);
   }
 
   .ptag {

@@ -7,8 +7,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: env(safe-area-inset-top) 32px 0;
-  height: var(--navbar-safe);
+  padding: env(safe-area-inset-top, 0px) 32px 0;
+  height: calc(var(--navbar-h) + env(safe-area-inset-top, 0px));
   transition: background 0.3s ease, backdrop-filter 0.3s ease;
 }
 
@@ -19,7 +19,8 @@
   top: 0;
   left: 0;
   right: 0;
-  height: env(safe-area-inset-top);
+  z-index: 1;
+  height: env(safe-area-inset-top, 0px);
   background: var(--bg);
   pointer-events: none;
 }
@@ -192,6 +193,6 @@
   }
 
   .nav {
-    padding: env(safe-area-inset-top) 20px 0;
+    padding: env(safe-area-inset-top, 0px) 20px 0;
   }
 }
