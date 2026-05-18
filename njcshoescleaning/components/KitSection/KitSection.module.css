@@ -20,10 +20,10 @@
   background: radial-gradient(ellipse 85% 60% at 50% 38%, #111c30, #070a14 85%);
 }
 
-/* Header: sits below navbar */
+/* Header: sits below navbar — use explicit px so calc doesn't fail when env() is 0 on desktop */
 .header {
   position: absolute;
-  top: calc(var(--navbar-safe) + 80px);
+  top: calc(var(--navbar-h, 72px) + 80px);
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -208,7 +208,7 @@
 
 @media (max-width: 768px) {
   .header {
-    top: calc(var(--navbar-safe) + 20px);
+    top: calc(var(--navbar-safe, calc(var(--navbar-h, 72px) + env(safe-area-inset-top, 0px))) + 20px);
   }
 
   .ptag {
