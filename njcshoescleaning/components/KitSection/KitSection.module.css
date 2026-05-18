@@ -23,7 +23,7 @@
 /* Header: sits below navbar */
 .header {
   position: absolute;
-  top: calc(var(--navbar-safe) + 20px);
+  top: calc(var(--navbar-safe) + 80px);
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -207,6 +207,10 @@
 }
 
 @media (max-width: 768px) {
+  .header {
+    top: calc(var(--navbar-safe) + 20px);
+  }
+
   .ptag {
     display: none;
   }
