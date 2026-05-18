@@ -12,6 +12,18 @@
   transition: background 0.3s ease, backdrop-filter 0.3s ease;
 }
 
+/* Always block the notch/Dynamic Island area — content must never show through */
+.nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: env(safe-area-inset-top);
+  background: var(--bg);
+  pointer-events: none;
+}
+
 .nav.scrolled {
   background: rgba(7, 10, 20, 0.85);
   backdrop-filter: blur(12px);

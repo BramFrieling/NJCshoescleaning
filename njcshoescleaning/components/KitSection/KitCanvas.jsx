@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -167,7 +168,19 @@ export default function KitCanvas({ sectionRef }) {
         brsh: new THREE.MeshPhongMaterial({ color: 0x0a0e1e, specular: 0x4aadd6, shininess: 55 }),
       }
 
-      const prods = [mkSpray(M), mkBrush(M), mkWoodBrush(), mkEraser()]
+      // Slot 0 is a container — real GLB loads into it async
+      const bottleGroup = new THREE.Group()
+      new GLTFLoader().load('/flesje.glb', (gltf) => {
+        const m = gltf.scene
+        const box = new THREE.Box3().setFromObject(m)
+        const center = box.getCenter(new THREE.Vector3())
+        const size = box.getSize(new THREE.Vector3())
+        m.scale.setScalar(1.1 / Math.max(size.x, size.y, size.z))
+        m.position.sub(center.multiplyScalar(1.1 / Math.max(size.x, size.y, size.z)))
+        bottleGroup.add(m)
+      })
+
+      const prods = [bottleGroup, mkBrush(M), mkWoodBrush(), mkEraser()]
 
       // Base tilts so products show their most interesting face
       const baseRots = [
@@ -330,8 +343,21 @@ export default function KitCanvas({ sectionRef }) {
     sPlane.receiveShadow = !isLowEnd
     scene.add(sPlane)
 
+    // Slot 0: real bottle GLB, loaded async into a group
+    const deskBottleGroup = new THREE.Group()
+    new GLTFLoader().load('/flesje.glb', (gltf) => {
+      const m = gltf.scene
+      const box = new THREE.Box3().setFromObject(m)
+      const center = box.getCenter(new THREE.Vector3())
+      const size = box.getSize(new THREE.Vector3())
+      const s = 1.0 / Math.max(size.x, size.y, size.z)
+      m.scale.setScalar(s)
+      m.position.sub(center.multiplyScalar(s))
+      deskBottleGroup.add(m)
+    })
+
     const prods = [
-      { m: mkSpray(M),     sP: [-0.75, 0.2,  0.1],  eP: [-2.2,  1.1, 0.7],  eR: [-0.18, 0.48, 0.1]  },
+      { m: deskBottleGroup, sP: [-0.75, 0.2,  0.1],  eP: [-2.2,  1.1, 0.7],  eR: [-0.18, 0.48, 0.1]  },
       { m: mkBrush(M),     sP: [0.4,   0.2,  0.2],  eP: [2.2,   1.1, 0.4],  eR: [0.28, -0.38, -0.18] },
       { m: mkWoodBrush(),  sP: [-0.18, 0.18, -0.3], eP: [-1.2,  1.3, 1.1],  eR: [0.5, -0.4, 0.1]    },
       { m: mkEraser(),     sP: [0.68,  0.15, -0.4], eP: [0.8,   1.4, 1.2],  eR: [-0.2, 0.7, 0.1]    },
