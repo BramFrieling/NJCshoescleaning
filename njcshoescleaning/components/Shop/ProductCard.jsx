@@ -36,15 +36,11 @@ export default function ProductCard({ product }) {
           <div className={styles.badge}>{product.badge}</div>
         )}
 
-        <div className={styles.visual}>
-          <div className={styles.box3d} style={{ '--clr': product.color }}>
-            <div className={styles.boxFace} data-face="front" />
-            <div className={styles.boxFace} data-face="back" />
-            <div className={styles.boxFace} data-face="left" />
-            <div className={styles.boxFace} data-face="right" />
-            <div className={styles.boxFace} data-face="top" />
-            <div className={styles.boxFace} data-face="bottom" />
-          </div>
+        <div className={styles.visual} style={{ '--clr': product.color }}>
+          <span className={styles.visualNum}>
+            {product.id === 'starter-kit' ? '01' : '02'}
+          </span>
+          <div className={styles.visualAccent} />
         </div>
 
         <div className={styles.info}>

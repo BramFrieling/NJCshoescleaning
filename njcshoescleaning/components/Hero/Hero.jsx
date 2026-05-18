@@ -47,9 +47,6 @@ export default function Hero({ onShopClick }) {
           <button onClick={onShopClick} className={styles.btnPrimary}>
             Shop nu
           </button>
-          <a href="#reviews" className={styles.btnSecondary}>
-            Lees reviews
-          </a>
         </div>
       </div>
 

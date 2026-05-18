@@ -12,13 +12,9 @@
   margin: 0 auto 48px;
 }
 
-.brand {
-  font-family: var(--font-heading), sans-serif;
-  font-weight: 900;
-  font-size: 1.5rem;
-  letter-spacing: 0.1em;
+.brandLogo {
   margin-bottom: 12px;
-  color: var(--white);
+  opacity: 0.9;
 }
 
 .brandSub {
@@ -98,9 +94,23 @@
   align-items: center;
 }
 
-.payments span {
-  display: flex;
-  opacity: 0.75;
+.payBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 9px;
+  border-radius: 4px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+
+.payBadge:hover {
+  opacity: 1;
 }
 
 @media (max-width: 768px) {

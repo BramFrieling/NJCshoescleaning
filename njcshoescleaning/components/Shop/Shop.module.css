@@ -72,63 +72,45 @@
   z-index: 1;
 }
 
-/* 3D rotating box */
+/* Premium product visual */
 .visual {
-  height: 240px;
-  background: #f7f5f0;
+  height: 220px;
+  background: linear-gradient(145deg, #0c1420 0%, #050810 100%);
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  perspective: 600px;
 }
 
-.box3d {
-  width: 100px;
-  height: 130px;
-  position: relative;
-  transform-style: preserve-3d;
-  animation: spin3d 6s linear infinite;
-}
-
-@keyframes spin3d {
-  from { transform: rotateY(0deg) rotateX(10deg); }
-  to   { transform: rotateY(360deg) rotateX(10deg); }
-}
-
-.boxFace {
+.visual::before {
+  content: '';
   position: absolute;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 110%, var(--clr, var(--navy)), transparent 70%);
+  opacity: 0.35;
 }
 
-.boxFace[data-face="front"],
-.boxFace[data-face="back"] {
-  width: 100px;
-  height: 130px;
+.visualNum {
+  font-family: var(--font-heading), sans-serif;
+  font-weight: 900;
+  font-size: 7rem;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.06);
+  letter-spacing: -0.04em;
+  user-select: none;
+  position: relative;
+  z-index: 1;
+}
+
+.visualAccent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
   background: var(--clr, var(--navy));
 }
-
-.boxFace[data-face="front"] { transform: translateZ(38px); }
-.boxFace[data-face="back"]  { transform: translateZ(-38px) rotateY(180deg); }
-
-.boxFace[data-face="left"],
-.boxFace[data-face="right"] {
-  width: 76px;
-  height: 130px;
-  background: color-mix(in srgb, var(--clr, var(--navy)) 80%, black);
-}
-
-.boxFace[data-face="left"]  { transform: translateX(-38px) rotateY(-90deg); }
-.boxFace[data-face="right"] { transform: translateX(138px) rotateY(90deg); }
-
-.boxFace[data-face="top"],
-.boxFace[data-face="bottom"] {
-  width: 100px;
-  height: 76px;
-  background: color-mix(in srgb, var(--clr, var(--navy)) 60%, black);
-}
-
-.boxFace[data-face="top"]    { transform: translateY(-38px) rotateX(90deg); }
-.boxFace[data-face="bottom"] { transform: translateY(168px) rotateX(-90deg); }
 
 /* Info */
 .info {

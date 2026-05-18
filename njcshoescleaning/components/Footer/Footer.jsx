@@ -1,3 +1,4 @@
+import LogoImage from '@/components/Logo/LogoImage'
 import styles from './Footer.module.css'
 
 const SOCIALS = [
@@ -32,57 +33,12 @@ const SOCIALS = [
   },
 ]
 
-const PAYMENT_ICONS = [
-  {
-    name: 'iDEAL',
-    icon: (
-      <svg width="38" height="24" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="38" height="24" rx="3" fill="#CC0066"/>
-        <text x="5" y="16" fontFamily="Arial,sans-serif" fontSize="9" fontWeight="700" fill="#fff">iDEAL</text>
-        <path d="M28 6h4a4 4 0 010 8h-4V6z" fill="#fff" opacity="0.9"/>
-        <path d="M29 8h3a2 2 0 010 4h-3V8z" fill="#CC0066"/>
-      </svg>
-    ),
-  },
-  {
-    name: 'Mastercard',
-    icon: (
-      <svg width="38" height="24" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="38" height="24" rx="3" fill="#1A1F36"/>
-        <circle cx="15" cy="12" r="7" fill="#EB001B"/>
-        <circle cx="23" cy="12" r="7" fill="#F79E1B"/>
-        <path d="M19 6.8a7 7 0 010 10.4A7 7 0 0119 6.8z" fill="#FF5F00"/>
-      </svg>
-    ),
-  },
-  {
-    name: 'Visa',
-    icon: (
-      <svg width="38" height="24" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="38" height="24" rx="3" fill="#1434CB"/>
-        <text x="7" y="16" fontFamily="Arial,sans-serif" fontSize="11" fontWeight="800" fill="#fff" letterSpacing="-0.5">VISA</text>
-      </svg>
-    ),
-  },
-  {
-    name: 'Klarna',
-    icon: (
-      <svg width="38" height="24" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="38" height="24" rx="3" fill="#FFB3C7"/>
-        <text x="7" y="16" fontFamily="Arial,sans-serif" fontSize="9" fontWeight="700" fill="#1A1A1A">klarna</text>
-      </svg>
-    ),
-  },
-  {
-    name: 'PayPal',
-    icon: (
-      <svg width="38" height="24" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="38" height="24" rx="3" fill="#003087"/>
-        <text x="5" y="15" fontFamily="Arial,sans-serif" fontSize="9" fontWeight="700" fill="#009CDE">Pay</text>
-        <text x="18" y="15" fontFamily="Arial,sans-serif" fontSize="9" fontWeight="700" fill="#012169">Pal</text>
-      </svg>
-    ),
-  },
+const PAYMENT_METHODS = [
+  { name: 'iDEAL',      bg: '#CC0066', fg: '#ffffff' },
+  { name: 'Mastercard', bg: '#1A1F36', fg: '#F79E1B' },
+  { name: 'VISA',       bg: '#1434CB', fg: '#ffffff' },
+  { name: 'Klarna',     bg: '#FFB3C7', fg: '#1A1A1A' },
+  { name: 'PayPal',     bg: '#003087', fg: '#009CDE' },
 ]
 
 export default function Footer() {
@@ -90,7 +46,9 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.grid}>
         <div>
-          <p className={styles.brand}>NJC</p>
+          <div className={styles.brandLogo}>
+            <LogoImage width={72} height={48} />
+          </div>
           <p className={styles.brandSub}>
             Premium schoenenverzorging.<br />Dutch quality.
           </p>
@@ -129,8 +87,15 @@ export default function Footer() {
           © {new Date().getFullYear()} NJC Shoes Cleaning. Alle rechten voorbehouden.
         </p>
         <div className={styles.payments}>
-          {PAYMENT_ICONS.map((p) => (
-            <span key={p.name} aria-label={p.name}>{p.icon}</span>
+          {PAYMENT_METHODS.map((p) => (
+            <span
+              key={p.name}
+              aria-label={p.name}
+              className={styles.payBadge}
+              style={{ background: p.bg, color: p.fg }}
+            >
+              {p.name}
+            </span>
           ))}
         </div>
       </div>

@@ -114,23 +114,6 @@
   opacity: 0.85;
 }
 
-.btnSecondary {
-  display: flex;
-  align-items: center;
-  color: var(--white);
-  text-decoration: none;
-  font-size: 0.8rem;
-  opacity: 0.5;
-  transition: opacity 0.2s;
-  padding: 14px 0;
-  font-family: var(--font-body), sans-serif;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.btnSecondary:hover {
-  opacity: 1;
-}
 
 /* Stats panel (right side, bottom) */
 .stats {
@@ -197,6 +180,19 @@
 @keyframes scrollPulse {
   0%, 100% { opacity: 0.4; }
   50% { opacity: 1; }
+}
+
+/* Gradient at bottom so marquee never peeks through */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--bg));
+  pointer-events: none;
+  z-index: 2;
 }
 
 /* Bottom rule */

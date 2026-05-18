@@ -38,11 +38,17 @@
   background: rgba(255, 255, 255, 0.02);
 }
 
+.summary {
+  font-size: 0.85rem;
+  opacity: 0.45;
+  margin-top: 12px;
+  font-family: var(--font-body), sans-serif;
+}
+
 .stars {
-  margin-bottom: 12px;
-  color: #f5c518;
-  font-size: 0.9rem;
-  letter-spacing: 2px;
+  display: flex;
+  gap: 2px;
+  margin-bottom: 14px;
 }
 
 .text {
