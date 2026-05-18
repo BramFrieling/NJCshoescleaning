@@ -7,26 +7,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* padding-top pushes logo/buttons below the notch/Dynamic Island */
   padding: env(safe-area-inset-top, 0px) 32px 0;
+  /* height grows to include safe-area zone so background fills to screen edge */
   height: calc(var(--navbar-h) + env(safe-area-inset-top, 0px));
+  /* always opaque — the only reliable way to block content in the notch zone */
+  background: var(--bg);
   transition: background 0.3s ease, backdrop-filter 0.3s ease;
 }
 
-/* Always block the notch/Dynamic Island area — content must never show through */
-.nav::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  height: env(safe-area-inset-top, 0px);
-  background: var(--bg);
-  pointer-events: none;
-}
-
 .nav.scrolled {
-  background: rgba(7, 10, 20, 0.85);
+  background: rgba(7, 10, 20, 0.92);
   backdrop-filter: blur(12px);
 }
 
