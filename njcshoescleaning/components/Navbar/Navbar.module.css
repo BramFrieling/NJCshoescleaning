@@ -13,12 +13,6 @@
   height: calc(var(--navbar-h) + env(safe-area-inset-top, 0px));
   /* always opaque — the only reliable way to block content in the notch zone */
   background: var(--bg);
-  transition: background 0.3s ease, backdrop-filter 0.3s ease;
-}
-
-.nav.scrolled {
-  background: rgba(7, 10, 20, 0.92);
-  backdrop-filter: blur(12px);
 }
 
 .logo {

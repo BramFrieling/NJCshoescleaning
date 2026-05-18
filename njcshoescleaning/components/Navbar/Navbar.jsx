@@ -10,16 +10,9 @@ const LogoImage = dynamic(() => import('@/components/Logo/LogoImage'), { ssr: fa
 
 export default function Navbar({ onCartOpen }) {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
   const { totalItems } = useCart()
   const cartBtnRef = useRef(null)
   const prevItems = useRef(totalItems)
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   useEffect(() => {
     if (totalItems > prevItems.current && cartBtnRef.current) {
@@ -44,7 +37,7 @@ export default function Navbar({ onCartOpen }) {
 
   return (
     <>
-      <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
+      <nav className={styles.nav}>
         <a href="#" className={styles.logo} aria-label="NJC Shoes Cleaning">
           <LogoImage width={130} height={65} />
         </a>
