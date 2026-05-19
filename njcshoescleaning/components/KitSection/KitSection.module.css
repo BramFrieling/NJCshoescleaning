@@ -1,0 +1,225 @@
+/* Outer: tall so the sticky section has scroll room */
+.outer {
+  position: relative;
+  height: 350vh;
+}
+
+@media (max-width: 768px) {
+  .outer {
+    height: 300vh;
+  }
+}
+
+/* Sticky viewport */
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: radial-gradient(ellipse 85% 60% at 50% 38%, #111c30, #070a14 85%);
+}
+
+/* Header: sits below navbar — use explicit px so calc doesn't fail when env() is 0 on desktop */
+.header {
+  position: absolute;
+  top: calc(var(--navbar-h, 72px) + 80px);
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  white-space: nowrap;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.headerHidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-12px);
+}
+
+.headerLabel {
+  font-size: 0.62rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 0.5rem;
+  font-family: var(--font-body), sans-serif;
+  font-weight: 400;
+}
+
+.headerTitle {
+  font-size: clamp(1.8rem, 4vw, 3.8rem);
+  letter-spacing: 0.04em;
+}
+
+/* Product tags */
+.ptag {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.ptagVisible {
+  opacity: 1;
+}
+
+.left {
+  left: 3.5%;
+  transform: translateY(-50%);
+}
+
+.right {
+  right: 3.5%;
+  transform: translateY(-50%);
+  text-align: right;
+}
+
+.ptagNum {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+}
+
+.ptagName {
+  font-family: var(--font-heading), sans-serif;
+  font-size: clamp(1.3rem, 2vw, 2rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.92;
+}
+
+.ptagDesc {
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.42);
+  margin-top: 0.5rem;
+  max-width: 155px;
+  line-height: 1.6;
+  font-family: var(--font-body), sans-serif;
+}
+
+.right .ptagDesc {
+  margin-left: auto;
+}
+
+/* Bottom corner label */
+.corner {
+  position: absolute;
+  bottom: 1.8rem;
+  left: 3.5rem;
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.1);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Mobile product card */
+.mobileCard {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0 2rem 3.5rem;
+  /* Account for iPhone home indicator / safe area */
+  padding-bottom: max(3.5rem, calc(env(safe-area-inset-bottom) + 1.5rem));
+  background: linear-gradient(to top, rgba(7,9,20,0.96) 0%, rgba(7,9,20,0.7) 60%, transparent 100%);
+  z-index: 10;
+  pointer-events: none;
+  min-height: 44%;
+}
+
+.mobileCardItem {
+  position: absolute;
+  bottom: 3.5rem;
+  left: 2rem;
+  right: 2rem;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.mobileCardActive {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobileCardNum {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.mobileCardName {
+  font-family: var(--font-heading), sans-serif;
+  font-size: clamp(2rem, 9vw, 2.8rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.9;
+  margin-bottom: 0.8rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileCardDesc {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.48);
+  line-height: 1.65;
+  font-family: var(--font-body), sans-serif;
+  font-weight: 300;
+  max-width: 260px;
+}
+
+.mobileDots {
+  display: flex;
+  gap: 7px;
+  margin-top: 1.4rem;
+  align-items: center;
+}
+
+.mobileDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  transition: all 0.35s ease;
+}
+
+.mobileDotActive {
+  width: 18px;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .header {
+    top: calc(var(--navbar-h, 72px) + env(safe-area-inset-top, 0px) + 20px);
+  }
+
+  .ptag {
+    display: none;
+  }
+
+  .corner {
+    left: 1.5rem;
+  }
+
+  .mobileCard {
+    display: block;
+  }
+}

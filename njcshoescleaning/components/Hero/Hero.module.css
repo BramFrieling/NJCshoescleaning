@@ -1,0 +1,233 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 65% 40%, #0d1a3a 0%, #070a14 60%);
+}
+
+/* Dot grid overlay */
+.dotGrid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Large "NJC" background watermark */
+.watermark {
+  position: absolute;
+  right: -1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-heading), sans-serif;
+  font-size: clamp(10rem, 22vw, 20rem);
+  font-weight: 900;
+  color: var(--white);
+  opacity: 0.03;
+  user-select: none;
+  pointer-events: none;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  z-index: 0;
+}
+
+
+.content {
+  position: relative;
+  z-index: 1;
+  padding: 0 48px;
+  max-width: 680px;
+  padding-top: calc(var(--navbar-h) + env(safe-area-inset-top, 0px));
+}
+
+.eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-family: var(--font-body), sans-serif;
+}
+
+.headline {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(4rem, 10vw, 8rem);
+  line-height: 0.9;
+  margin-bottom: 28px;
+}
+
+.word {
+  color: var(--accent);
+  display: block;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.wordIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wordOut {
+  opacity: 0;
+  transform: translateY(-12px);
+}
+
+.sub {
+  font-size: 1.05rem;
+  opacity: 0.6;
+  max-width: 360px;
+  line-height: 1.65;
+  margin-bottom: 40px;
+  font-family: var(--font-body), sans-serif;
+  font-weight: 300;
+}
+
+.ctas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btnPrimary {
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  padding: 14px 34px;
+  font-family: var(--font-heading), sans-serif;
+  font-weight: 900;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btnPrimary:hover {
+  opacity: 0.85;
+}
+
+
+/* Stats panel (right side, bottom) */
+.stats {
+  position: absolute;
+  right: 48px;
+  bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  z-index: 2;
+  text-align: right;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statNum {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.45;
+  font-family: var(--font-body), sans-serif;
+}
+
+/* Scroll indicator — center bottom, horizontal layout */
+.scroll {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 2;
+}
+
+.scroll span {
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  font-family: var(--font-body), sans-serif;
+}
+
+.scrollLine {
+  width: 1px;
+  height: 52px;
+  background: linear-gradient(to bottom, rgba(74, 173, 214, 0.9), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* Gradient at bottom so marquee never peeks through */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--bg));
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Bottom rule */
+.bottomRule {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(74, 173, 214, 0.25), transparent);
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 0 20px;
+    padding-top: calc(var(--navbar-h) + env(safe-area-inset-top, 0px));
+  }
+
+  /* Hide stats on mobile — too cluttered */
+  .stats {
+    display: none;
+  }
+
+  /* Watermark nearly invisible on mobile — competes with headline */
+  .watermark {
+    opacity: 0;
+  }
+
+  .headline {
+    font-size: clamp(3.2rem, 14vw, 5rem);
+  }
+
+  .sub {
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+}

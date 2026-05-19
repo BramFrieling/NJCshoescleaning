@@ -1,0 +1,257 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 149;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.backdropOpen {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 150;
+  width: min(var(--cart-width), 100vw);
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.panelOpen {
+  transform: translateX(0);
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 28px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.panelHeader h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--white);
+  font-family: var(--font-body), sans-serif;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  color: var(--white);
+  opacity: 0.5;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  padding: 4px;
+}
+
+.closeBtn:hover {
+  opacity: 1;
+}
+
+/* Shipping progress */
+.shippingBar {
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 16px 28px 0;
+}
+
+.shippingProgress {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.4s ease;
+}
+
+.shippingLabel {
+  padding: 8px 28px 16px;
+  font-size: 0.75rem;
+  color: var(--accent);
+  opacity: 0.8;
+}
+
+/* Items list */
+.items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 28px;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  gap: 20px;
+  text-align: center;
+}
+
+.empty p {
+  opacity: 0.4;
+  font-size: 0.9rem;
+}
+
+.shopNowBtn {
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  padding: 12px 28px;
+  font-family: var(--font-heading), sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+}
+
+/* Cart Item */
+.item {
+  display: grid;
+  grid-template-columns: 48px 1fr auto auto;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.itemBox {
+  width: 48px;
+  height: 60px;
+  background: var(--clr, var(--navy));
+  flex-shrink: 0;
+}
+
+.itemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.itemName {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--white);
+}
+
+.itemPrice {
+  font-size: 0.8rem;
+  opacity: 0.5;
+}
+
+.qtyControl {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 4px 8px;
+}
+
+.qtyControl button {
+  background: none;
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0 2px;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.qtyControl button:hover {
+  opacity: 1;
+}
+
+.qtyControl span {
+  font-size: 0.875rem;
+  min-width: 16px;
+  text-align: center;
+}
+
+.removeBtn {
+  background: none;
+  border: none;
+  color: var(--white);
+  opacity: 0.3;
+  cursor: pointer;
+  font-size: 0.75rem;
+  transition: opacity 0.2s;
+}
+
+.removeBtn:hover {
+  opacity: 0.7;
+}
+
+/* Footer */
+.panelFooter {
+  padding: 24px 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.subtotalRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: var(--white);
+}
+
+.checkoutBtn {
+  display: block;
+  text-align: center;
+  background: var(--white);
+  color: var(--bg);
+  text-decoration: none;
+  padding: 16px;
+  font-family: var(--font-heading), sans-serif;
+  font-weight: 900;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 8px;
+  transition: opacity 0.2s;
+}
+
+.checkoutBtn:hover {
+  opacity: 0.85;
+}
+
+/* Mobile: bottom sheet */
+@media (max-width: 768px) {
+  .panel {
+    top: auto;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    max-height: 85dvh;
+    transform: translateY(100%);
+    border-radius: 16px 16px 0 0;
+  }
+
+  .panelOpen {
+    transform: translateY(0);
+  }
+
+  .panelFooter {
+    padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  }
+}
