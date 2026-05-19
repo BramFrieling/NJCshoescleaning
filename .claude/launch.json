@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "njc-dev",
-      "runtimeExecutable": "sh",
-      "runtimeArgs": ["-c", "cd njcshoescleaning && npm run dev -- --port 3034"],
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "--port", "3034"],
       "port": 3034
     }
   ]

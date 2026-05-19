@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
+import { disposeScene, disposeRenderer } from '@/lib/three-cleanup'
 import styles from './Hero.module.css'
 
 const isLowEnd = typeof navigator !== 'undefined' && (navigator.hardwareConcurrency ?? 8) <= 4
@@ -52,6 +53,7 @@ export default function ThreeScene() {
     let t = 0
     const animate = () => {
       frame = requestAnimationFrame(animate)
+      if (document.hidden) return
       t += 0.008
       group.rotation.y = t
       group.rotation.x = Math.sin(t * 0.5) * 0.15
@@ -70,13 +72,12 @@ export default function ThreeScene() {
     }
     window.addEventListener('resize', onResize)
 
+    const mountEl = mountRef.current
     return () => {
       cancelAnimationFrame(frame)
       window.removeEventListener('resize', onResize)
-      renderer.dispose()
-      if (mountRef.current?.contains(renderer.domElement)) {
-        mountRef.current.removeChild(renderer.domElement)
-      }
+      disposeScene(scene)
+      disposeRenderer(renderer, mountEl)
     }
   }, [])
 

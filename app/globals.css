@@ -44,8 +44,6 @@ body {
   color: var(--white);
   font-family: var(--font-body), 'Outfit', sans-serif;
   font-weight: 300;
-  /* clip instead of hidden — hidden breaks position:sticky on iOS Safari */
-  overflow-x: clip;
 }
 
 /* Film grain overlay */

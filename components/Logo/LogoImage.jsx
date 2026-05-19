@@ -12,8 +12,7 @@ export default function LogoImage({ width = 120, height = 60, className }) {
     if (!canvas) return
 
     const img = new Image()
-    img.src = '/images/njclogo.jpg'
-    img.onload = () => {
+    const draw = () => {
       canvas.width = img.naturalWidth
       canvas.height = img.naturalHeight
       const ctx = canvas.getContext('2d')
@@ -50,6 +49,12 @@ export default function LogoImage({ width = 120, height = 60, className }) {
       }
       ctx.putImageData(imgData, 0, 0)
     }
+
+    // Register the handler before setting src, and cover the case where the
+    // image is already cached (decode resolves before onload would attach).
+    img.onload = draw
+    img.src = '/images/njclogo.png'
+    if (img.complete && img.naturalWidth > 0) draw()
   }, [])
 
   return (

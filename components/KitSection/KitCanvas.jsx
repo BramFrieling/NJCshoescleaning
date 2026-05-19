@@ -5,6 +5,7 @@ import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { disposeScene, disposeRenderer } from '@/lib/three-cleanup'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -178,6 +179,7 @@ export default function KitCanvas({ sectionRef }) {
         m.scale.setScalar(1.1 / Math.max(size.x, size.y, size.z))
         m.position.sub(center.multiplyScalar(1.1 / Math.max(size.x, size.y, size.z)))
         bottleGroup.add(m)
+        ScrollTrigger.refresh()
       })
 
       const prods = [bottleGroup, mkBrush(M), mkWoodBrush(), mkEraser()]
@@ -218,6 +220,7 @@ export default function KitCanvas({ sectionRef }) {
       let rafId
       const animate = (t) => {
         rafId = requestAnimationFrame(animate)
+        if (document.hidden) return
         const dt = t * 0.001
         const prog = tl.scrollTrigger?.progress ?? 0
         const ai = Math.min(Math.floor(prog * 4), 3)
@@ -243,8 +246,8 @@ export default function KitCanvas({ sectionRef }) {
         window.removeEventListener('resize', onResize)
         tl.kill()
         ScrollTrigger.getAll().forEach((st) => st.kill())
-        renderer.dispose()
-        if (el?.contains(renderer.domElement)) el.removeChild(renderer.domElement)
+        disposeScene(scene)
+        disposeRenderer(renderer, el)
       }
     }
 
@@ -420,6 +423,7 @@ export default function KitCanvas({ sectionRef }) {
     let rafId
     const animate = (t) => {
       rafId = requestAnimationFrame(animate)
+      if (document.hidden) return
       const dt = t * 0.001
 
       const prog = tl.scrollTrigger?.progress ?? 0
@@ -454,8 +458,8 @@ export default function KitCanvas({ sectionRef }) {
       window.removeEventListener('resize', onResize)
       tl.kill()
       ScrollTrigger.getAll().forEach((st) => st.kill())
-      renderer.dispose()
-      if (el?.contains(renderer.domElement)) el.removeChild(renderer.domElement)
+      disposeScene(scene)
+      disposeRenderer(renderer, el)
     }
   }, [sectionRef])
 
